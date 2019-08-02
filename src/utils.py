@@ -21,7 +21,7 @@ class Translator:
     def translate(self):
         print('translating embedding')
         for i,vec in enumerate(self.embedding):
-            if (len(vec) == 301) & (vec[0] != '</s>'):
+            if (len(vec) == 301) & ((vec[0] != '</s>') & (vec[0] != '<unk>')):
                 try:
                     token_id = int(str(vec[0]).replace('$',''))
                     token_word = self.dictionary[token_id]
