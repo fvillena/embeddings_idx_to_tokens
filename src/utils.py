@@ -23,12 +23,12 @@ class Translator:
         for i,vec in enumerate(self.embedding):
             if (len(vec) == 301) & (vec[0] != '</s>'):
                 try:
-                    token_id = int(vec[0])
+                    token_id = int(str(vec[0]).replace('$',''))
                     token_word = self.dictionary[token_id]
                     self.embedding[i][0] = token_word
                     print(str(token_id) + ' ' + token_word)
-                except:
-                    print('### error in id: ' + str(token_id))
+                except IndexError:
+                    print('### index error in id: ' + str(token_id))
                     pass
         print('saving embedding')
         with open(self.translated_embedding_location, 'w', encoding='utf-8') as file:
